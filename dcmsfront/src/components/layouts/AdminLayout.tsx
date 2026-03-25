@@ -11,7 +11,7 @@ import {
 function AdminLayout() {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar variant="inset" />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
@@ -23,8 +23,8 @@ function AdminLayout() {
             <DynamicBreadcrumbs />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="mx-auto max-w-7xl w-full">
+        <div className="flex-1 flex-col gap-4 p-4 pt-0 w-full">
+          <div className="w-full">
             <Outlet />
           </div>
         </div>
