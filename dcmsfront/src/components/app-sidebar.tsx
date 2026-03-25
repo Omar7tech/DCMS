@@ -1,53 +1,87 @@
+"use client"
+
+import * as React from "react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-
   SidebarHeader,
-  SidebarMenu,
-
-  SidebarMenuButton,
-  SidebarMenuItem,
-
-
+  SidebarRail,
 } from "@/components/ui/sidebar"
-import { Home, Settings2Icon, User2, Users, Truck } from "lucide-react"
-import { SidebarNavLink } from "./sidebar-nav-link"
+import { Home, Users, Car, Settings2Icon, Truck } from "lucide-react"
 
+// This is sample data.
+const data = {
+  user: {
+    name: "Admin",
+    email: "admin@dcms.com",
+    avatar: "/avatars/admin.jpg",
+  },
+  teams: [
+    {
+      name: "DCMS",
+      logo: <Truck />,
+      plan: "Enterprise",
+    },
+  ],
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "/admin",
+      icon: <Home />,
+      isActive: true,
+      items: [],
+    },
+    {
+      title: "Users",
+      url: "/admin/users",
+      icon: <Users />,
+      items: [],
+    },
+    {
+      title: "Logistics",
+      url: "#",
+      icon: <Car />,
+      items: [
+        {
+          title: "Vehicles",
+          url: "/admin/vehicles",
+        },
+        {
+          title: "Drivers",
+          url: "/admin/drivers",
+        },
+      ],
+    },
+    {
+      title: "Settings",
+      url: "/admin/settings",
+      icon: <Settings2Icon />,
+      items: [],
+    },
+  ],
+  projects: [],
+}
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="floating">
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="bg-green-700/50 text-white font-bold text-base shadow-md  transition-all" variant="default">
-              <Truck className="h-5 w-5" />
-              <span>DCMS</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
-
-
-      <SidebarContent >
-        <SidebarMenu>
-          <SidebarNavLink to="/admin" icon={Home} label="Dashboard" />
-          <SidebarNavLink to="/admin/users" icon={Users} label="Users" />
-        </SidebarMenu>
+      <SidebarContent>
+        <NavMain items={data.navMain} />
+        <NavProjects projects={data.projects} />
       </SidebarContent>
-
-
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton>
-              <User2 /> Username
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarNavLink to="/admin/settings" icon={Settings2Icon} label="Settings" />
-        </SidebarMenu>
+        <NavUser user={data.user} />
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }

@@ -1,7 +1,12 @@
+import { PageHeader } from "@/components/page-header"
 
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <PageHeader title="Dashboard" />
+      <div>Home</div>
+    </>
+
   )
 }
 

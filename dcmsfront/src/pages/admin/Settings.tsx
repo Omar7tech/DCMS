@@ -7,7 +7,6 @@ export default function Settings() {
   return (
     <>
       <PageHeader title="Settings" />
-      
       <div className="space-y-4">
         <Card>
           <CardContent className="pt-6">
