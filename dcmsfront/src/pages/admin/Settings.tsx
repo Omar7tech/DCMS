@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeSelector } from "@/components/theme-selector"
 
 export default function Settings() {
   return (
@@ -18,7 +18,7 @@ export default function Settings() {
                   Select the theme for the application.
                 </p>
               </div>
-              <ModeToggle />
+              <ThemeSelector />
             </div>
           </CardContent>
         </Card>
